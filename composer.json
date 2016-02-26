@@ -1,0 +1,62 @@
+{
+    "name": "radarlog/banks-spyder",
+    "description": "Banks Spyder is free software to automatically generate bank statements in PDF format from your accounts.",
+    "keywords": [
+        "yii2",
+        "bank",
+        "account",
+        "statement",
+        "spyder",
+        "crawler"
+    ],
+    "homepage": "https://github.com/radarlog/banks-spyder",
+    "type": "project",
+    "license": "GPL-2.0",
+    "authors": [
+        {
+            "name": "Ilian Ranguelov",
+            "email": "me@radarlog.net",
+            "homepage": "https://radarlog.net/",
+            "role": "Developer"
+        }
+    ],
+    "minimum-stability": "stable",
+    "require": {
+        "php": ">=5.5.0",
+        "yiisoft/yii2": "*",
+        "yiisoft/yii2-bootstrap": "*",
+        "shark/simple_html_dom": "dev-master",
+        "php-curl-class/php-curl-class": "~4.0"
+    },
+    "require-dev": {
+        "yiisoft/yii2-debug": "*",
+        "yiisoft/yii2-gii": "*"
+    },
+    "config": {
+        "process-timeout": 1800
+    },
+    "scripts": {
+        "post-create-project-cmd": [
+            "yii\\composer\\Installer::postCreateProject"
+        ]
+    },
+    "extra": {
+        "yii\\composer\\Installer::postCreateProject": {
+            "setPermission": [
+                {
+                    "runtime": "0777",
+                    "web/assets": "0777",
+                    "yii": "0755",
+                    "modules/banks/statements": "0777"
+                }
+            ],
+            "generateCookieValidationKey": [
+                "config/web.php"
+            ]
+        },
+        "asset-installer-paths": {
+            "npm-asset-library": "vendor/npm",
+            "bower-asset-library": "vendor/bower"
+        }
+    }
+}
